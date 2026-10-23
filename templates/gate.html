@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Gate validation{% endblock %}
+{% block content %}
+<h1>Gate validation</h1>
+<form method="get">
+  <label>Event<select name="event_id">
+    {% for event in events %}
+      <option value="{{ event.id }}">{{ event.title }}</option>
+    {% endfor %}
+  </select></label>
+</form>
+{% endblock %}

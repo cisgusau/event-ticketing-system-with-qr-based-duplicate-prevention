@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ event.title }}{% endblock %}
+{% block content %}
+<h1>{{ event.title }}</h1>
+<p>{{ event.description }}</p>
+<p>{{ event.venue }} · {{ event.city }}</p>
+<p>Starts: {{ event.starts_at }}</p>
+<p>Price: {{ event.price | money(event.currency) }}</p>
+<p>Remaining: {{ remaining }}</p>
+<form method="post" action="{{ url_for('checkout', event_id=event.id) }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <label>Buyer name<input name="buyer_name" required></label>
+  <label>Buyer email<input name="buyer_email" type="email" required></label>
+  <label>Quantity<input name="quantity" type="number" min="1" max="8" value="1" required></label>
+  <button type="submit">Checkout</button>
+</form>
+{% endblock %}
