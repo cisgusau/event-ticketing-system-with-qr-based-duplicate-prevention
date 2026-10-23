@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}AFTR — Discover events{% endblock %}
+{% block content %}
+<section>
+  <h1>YOUR CITY. YOUR PEOPLE.</h1>
+  <p>Discover your next live moment.</p>
+</section>
+<section>
+  {% for event in events %}
+    <article>
+      <h2>{{ event.title }}</h2>
+      <p>{{ event.venue }}, {{ event.city }}</p>
+      <p>{{ event.sold }} / {{ event.capacity }} sold</p>
+      <a href="{{ url_for('event_detail', event_id=event.id) }}">View event</a>
+    </article>
+  {% else %}
+    <p>No events available.</p>
+  {% endfor %}
+</section>
+{% endblock %}
